@@ -1,0 +1,19 @@
+# Reference environment for the analysis notebooks.
+#
+# These notebooks run inside Truveta Studio, which supplies its own image; the
+# versions below are NOT installed by this repository and are listed so a reader
+# knows what the code depends on. `tableone` is the one package the notebooks
+# install themselves, because it is not in the Truveta image.
+
+# --- Truveta platform (not available on PyPI) -----------------------------
+# truveta            # study SDK: Client, OutputMode, display_df
+# pyspark            # supplied by the Truveta Spark cluster
+
+# --- analysis stack --------------------------------------------------------
+pandas
+numpy
+scipy
+statsmodels
+scikit-learn
+matplotlib
+tableone

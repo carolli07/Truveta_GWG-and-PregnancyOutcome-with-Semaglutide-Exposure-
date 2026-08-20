@@ -1,0 +1,21 @@
+# Nothing patient-level ever belongs in this repository.
+*.csv
+*.parquet
+*.xlsx
+*.sav
+*.dta
+data/
+outputs/
+revise_results/
+
+# Notebook and Python noise
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
