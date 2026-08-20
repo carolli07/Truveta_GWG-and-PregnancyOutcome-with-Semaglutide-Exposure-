@@ -1,1 +1,1 @@
-# Truveta_GWG-and-PregnancyOutcome-with-Semaglutide-Exposure-
+# Truveta_GWG-and-PregnancyOutcome-with-Semaglutide-Exposure
