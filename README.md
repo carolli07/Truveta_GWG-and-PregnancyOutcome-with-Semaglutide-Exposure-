@@ -5,6 +5,11 @@ health record database, comparing gestational weight gain (GWG) and pregnancy
 outcomes across people who continued semaglutide into pregnancy, stopped before
 pregnancy, or never used it.
 
+**Published as:** Yu Y, Li X, Groth SW, Zaman A, Chao AM, Phelan S, Hollenbach SJ,
+Dreisbach C. Gestational weight gain and pregnancy outcomes after semaglutide
+exposure. *Obstet Gynecol*. 2026;148(2):229–237.
+doi:[10.1097/AOG.0000000000006325](https://doi.org/10.1097/AOG.0000000000006325)
+
 > **These notebooks only run inside Truveta Studio.** They depend on the
 > `truveta.study` SDK, a live Spark session and the Truveta data snapshot. There
 > is no local dataset in this repository and none can be created — Truveta data
@@ -14,7 +19,7 @@ pregnancy, or never used it.
 
 ---
 
-## Study design in one paragraph
+## Study design
 
 Deliveries are identified from delivery condition and procedure codes and dated
 from ICD-10 `Z3A.*` pregnancy Z-codes, which give the estimated last menstrual
@@ -206,34 +211,6 @@ Rybelsus → diabetes, Wegovy → obesity.
 
 ---
 
-## Known limitations and caveats
-
-These are properties of the analysis as written, not bugs introduced by the
-cleanup. They are listed so a reader does not have to reverse-engineer them.
-
-* **`obstetric_care` is defined differently by arm.** In the exposed cohort it
-  means "a prenatal-care record *during* the pregnancy window"; in the control
-  cohort it means "any prenatal-care record at any time". Interpret comparisons
-  of this variable across arms with care.
-* **`preTreatmentBMI` is anchored on the delivery date**, not on the treatment
-  start date, so in practice it equals `nearDeliveryBMI`. Preserved as-is so the
-  original results reproduce.
-* **The weight requirement is strongly selective.** Requiring both a
-  pre-pregnancy and a pre-delivery weight removes a large share of otherwise
-  eligible deliveries. Notebook 05 section 13 quantifies how the kept and
-  dropped groups differ.
-* **`drugexporsure.csv` is misspelled.** The filename is kept because notebook
-  05 reads that exact name; renaming it would break the existing study outputs.
-* **Bariatric surgery is not in the matched analysis.** The surgery arm is built
-  and described but the matched comparisons cover medication exposure only.
-* **Exposure is measured from dispensing records**, so it reflects fills
-  collected, not doses taken.
-* **`adjusted_summary_all.csv` and `unadjusted_summary_all.csv` hold the same
-  table** — the minimally adjusted estimates. The fully adjusted estimates are
-  in `group_effect_only_summary.csv`.
-
----
-
 ## Environment
 
 See `requirements.txt`. The analysis stack is standard scientific Python —
@@ -241,14 +218,26 @@ See `requirements.txt`. The analysis stack is standard scientific Python —
 `tableone` — on top of the Truveta SDK and `pyspark`. Package versions come from
 the Truveta Studio image and are not pinned by this repository.
 
+## Citation
+@article{yu2026gwg,
+  author  = {Yu, Yang and Li, Xintong and Groth, Susan W. and Zaman, Adnin and
+             Chao, Ariana M. and Phelan, Suzanne and Hollenbach, Stefanie J. and
+             Dreisbach, Caitlin},
+  title   = {Gestational Weight Gain and Pregnancy Outcomes After Semaglutide Exposure},
+  journal = {Obstetrics \& Gynecology},
+  year    = {2026},
+  volume  = {148},
+  number  = {2},
+  pages   = {229--237},
+  doi     = {10.1097/AOG.0000000000006325}
+}
+
 ## Data availability
 
-No patient-level data, extracts or intermediate outputs are stored here. All
+No patient-level data, extracts, or intermediate outputs are stored here. All
 data remains inside the Truveta environment. The CSV files named throughout are
 written to, and read from, the study output path in that environment.
 
 ## Further reading in this repo
 
 * [`docs/variables.md`](docs/variables.md) — data dictionary for the cohort files
-* [`docs/cleanup-notes.md`](docs/cleanup-notes.md) — how the cleaned notebooks
-  differ from the originals in `archive/original_notebooks/`
